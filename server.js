@@ -9,6 +9,9 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(morgan("dev"));
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
